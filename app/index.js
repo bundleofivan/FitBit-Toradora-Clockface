@@ -4,7 +4,7 @@ import document from "document";
 import * as util from "../common/utils";
 
 // Update the clock every minute
-clock.granularity = "minutes";
+clock.granularity = "seconds";
 
 // Get a handle on the <text> element
 let myLabel = document.getElementById("myLabel");
@@ -26,13 +26,18 @@ function updateClock() {
   }
   
   let mins = util.zeroPad(today.getMinutes());
+  let seconds = util.zeroPad(today.getSeconds());
 
   let dayOfWeek = today.getDay();
 
   let month = today.getMonth() + 1;
   let day = today.getDate();
   
-  myLabel.text = `${hours}:${mins}`;
+
+    myLabel.text = `${hours}:${mins}:${seconds}`;
+
+
+
   dayOfWeekLabel.text = days[dayOfWeek];
   dateLabel.text = `${month}/${day}`;
   

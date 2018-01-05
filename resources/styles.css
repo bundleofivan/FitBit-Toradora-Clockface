@@ -3,7 +3,7 @@
 }
 
 #myLabel {
-  font-size: 80;
+  font-size: 70;
   font-family: System-Bold;
   text-length: 32;
   text-anchor: middle;
@@ -31,5 +31,6 @@
   y: 15%;
   fill: white;
 }
+
 }
 
