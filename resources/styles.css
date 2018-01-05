@@ -11,3 +11,25 @@
   y: 50%+40;
   fill: white;
 }
+
+#dayOfWeekLabel {
+  font-size: 30;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: start;
+  x: 4%;
+  y: 15%;
+  fill: white;
+}
+
+#dateLabel {
+  font-size: 30;
+  font-family: System-Bold;
+  text-length: 32;
+  text-anchor: end;
+  x: 95%;
+  y: 15%;
+  fill: white;
+}
+}
+

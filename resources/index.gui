@@ -1,4 +1,6 @@
 <svg class="background">
   <image href="toradora.png" />
   <text id="myLabel" />
+  <text id="dayOfWeekLabel" />
+  <text id="dateLabel" />
 </svg>
