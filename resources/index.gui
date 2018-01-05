@@ -1,0 +1,4 @@
+<svg class="background">
+  <image href="toradora.png" />
+  <text id="myLabel" />
+</svg>
