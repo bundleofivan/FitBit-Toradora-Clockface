@@ -3,4 +3,5 @@
   <text id="myLabel" />
   <text id="dayOfWeekLabel" />
   <text id="dateLabel" />
+  <text id="heartRateLabel"/>
 </svg>

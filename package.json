@@ -5,7 +5,9 @@
     "appDisplayName": "Clock Face",
     "iconFile": "resources/icon.png",
     "wipeColor": "",
-    "requestedPermissions": [],
+    "requestedPermissions": [
+      "access_heart_rate"
+    ],
     "i18n": {
       "en": {
         "name": "Clock Face"
