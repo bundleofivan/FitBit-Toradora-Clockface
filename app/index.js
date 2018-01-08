@@ -1,73 +1,51 @@
-import clock from "clock";
-import document from "document";
-import { HeartRateSensor } from "heart-rate";
+'use strict';
 
-import * as util from "../common/utils";
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
 
+var clock = _interopDefault(require('clock'));
+var document = _interopDefault(require('document'));
+var heartRate = require('heart-rate');
 
-// Update the clock every minute
+function zeroPad(i) {
+    if (i < 10) {
+        i = "0" + i;
+    }
+    return i;
+}
+
 clock.granularity = "seconds";
-
-// Get a handle on the <text> element
-let myLabel = document.getElementById("myLabel");
-let dayOfWeekLabel = document.getElementById("dayOfWeekLabel");
-let dateLabel = document.getElementById("dateLabel");
-let heartRateLabel = document.getElementById("heartRateLabel");
+var myLabel = document.getElementById("myLabel");
+var dayOfWeekLabel = document.getElementById("dayOfWeekLabel");
+var dateLabel = document.getElementById("dateLabel");
+var heartRateLabel = document.getElementById("heartRateLabel");
 heartRateLabel.text = "--";
-
-let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-// Create a new instance of the HeartRateSensor object
-
-// Begin monitoring the sensor
-
-
-var tick = 0;
-
-// Update the <text> element with the current time
+var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 function updateClock() {
-
-  let today = new Date();
-  
-  var hours = today.getHours() % 12;
-  
-  if (hours == 0) {
-    hours = 12;
-  }
-  
-  let mins = util.zeroPad(today.getMinutes());
-  let seconds = util.zeroPad(today.getSeconds());
-
-  let dayOfWeek = today.getDay();
-
-  let month = today.getMonth() + 1;
-  let day = today.getDate();
-  
-  myLabel.text = `${hours}:${mins}:${seconds}`;
-
-  dayOfWeekLabel.text = days[dayOfWeek];
-  dateLabel.text = `${month}/${day}`;
-  
+    var today = new Date();
+    var hours = today.getHours() % 12;
+    if (hours == 0) {
+        hours = 12;
+    }
+    var mins = zeroPad(today.getMinutes());
+    var seconds = zeroPad(today.getSeconds());
+    var dayOfWeek = today.getDay();
+    var month = today.getMonth() + 1;
+    var day = today.getDate();
+    myLabel.text = hours + ":" + mins + ":" + seconds;
+    dayOfWeekLabel.text = days[dayOfWeek];
+    dateLabel.text = month + "/" + day;
+    if (!hrm.onactivate) {
+        heartRateLabel.text = "--";
+    }
 }
-
-
-// Update the clock every tick event
-clock.ontick = () => updateClock();
-
-var hrm = new HeartRateSensor();
-
-hrm.onreading = function() {
-
-  // Peek the current sensor values
-  console.log("Current heart rate: " + hrm.heartRate);
-  heartRateLabel.text = hrm.heartRate + " bpm";
-  // Stop monitoring the sensor
-  hrm.stop();
-}
-
-// updates heart rate every 2 seconds
+clock.ontick = function () { return updateClock(); };
+var hrm = new heartRate.HeartRateSensor();
+hrm.onreading = function () {
+    console.log("Current heart rate: " + hrm.heartRate);
+    heartRateLabel.text = hrm.heartRate + " bpm";
+    hrm.stop();
+};
 setInterval(updateHeartRate, 2000);
-
 function updateHeartRate() {
-  hrm.start();
+    hrm.start();
 }
-
